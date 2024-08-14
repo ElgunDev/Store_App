@@ -1,7 +1,8 @@
-package com.matrix.android105_android
+package com.matrix.android105_android.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.matrix.android105_android.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
