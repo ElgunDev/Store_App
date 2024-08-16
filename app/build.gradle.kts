@@ -1,8 +1,9 @@
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-    id("com.google.gms.google-services")
+//    id("com.google.gms.google-services")
 //    id("com.google.devtools.ksp")
 //    id("kotlin-kapt")
 //    id ("androidx.navigation.safeargs.kotlin")
@@ -50,6 +51,7 @@ android {
 }
 
 dependencies {
+
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     val room_version = "2.6.1"
@@ -58,8 +60,6 @@ dependencies {
     val fragment_version = "1.7.1"
 
     implementation ("androidx.room:room-runtime:$room_version")
-
-
     // To use Kotlin Symbol Processing (KSP)
 //    ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
@@ -80,11 +80,14 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-storage")
+//    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+//    implementation("com.google.firebase:firebase-auth")
+//    implementation("com.google.firebase:firebase-database")
+//    implementation("com.google.firebase:firebase-storage")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation ("com.google.dagger:dagger:2.52")
+    kapt ("com.google.dagger:dagger-compiler:2.52")
 }
 kapt{
     correctErrorTypes = true
