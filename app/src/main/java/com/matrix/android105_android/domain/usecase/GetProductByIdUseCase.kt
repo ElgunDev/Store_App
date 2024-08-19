@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetProductByIdUseCase @Inject constructor(
     private val productDetailRepository: IProductDetailRepository
 ) {
-    suspend fun execute(productId:String):List<ProductModelDto>{
+    suspend fun execute(productId:String):ProductModelDto{
         return productDetailRepository.getProductById(productId)
     }
 }

@@ -7,8 +7,8 @@
 
     <ImageButton
         android:id="@+id/btnBack"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/arrow_back_ios_new_fill0_wght400_grad0_opsz24"
         tools:layout_editor_absoluteX="24dp"
         tools:layout_editor_absoluteY="429dp"

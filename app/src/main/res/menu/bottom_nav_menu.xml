@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+           android:id="@+id/Product"
+        android:title="Product"
+        android:icon="@drawable/shopping_bag_24dp_e8eaed_fill0_wght400_grad0_opsz24"
+        />
+
+    <item
+        android:id="@+id/WishList"
+        android:title="WishList"
+        android:icon="@drawable/baseline_add_shopping_cart_24"
+        />
+    <item
+        android:id="@+id/Profil"
+        android:title="Profil"
+        android:icon="@drawable/account_circle_24dp_e8eaed_fill1_wght0_grad0_opsz24"
+        />
+
+</menu>

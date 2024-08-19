@@ -10,14 +10,14 @@ class ProductDetailImplRepository @Inject constructor(
     private val productDetailRemoteRepository: ProductDetailRemoteRepository,
             ):IProductDetailRepository{
 
-    override suspend fun getProductById(productId: String): List<ProductModelDto> {
-        var result = listOf<ProductModelDto>()
+    override suspend fun getProductById(productId: String): ProductModelDto {
+        var result:ProductModelDto?=null
         val response  = productDetailRemoteRepository.getProductById(productId)
         if (response.isSuccessful){
             response.body()?.let {
-               result= listOf(it.toDomain())
+                 result= it.toDomain()
             }
         }
-        return result
+        return result!!
     }
 }

@@ -6,7 +6,8 @@ plugins {
 //    id("com.google.gms.google-services")
 //    id("com.google.devtools.ksp")
 //    id("kotlin-kapt")
-//    id ("androidx.navigation.safeargs.kotlin")
+    id ("androidx.navigation.safeargs.kotlin")
+    id("com.google.dagger.hilt.android")
 
 
 
@@ -88,6 +89,8 @@ dependencies {
 
     implementation ("com.google.dagger:dagger:2.52")
     kapt ("com.google.dagger:dagger-compiler:2.52")
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-android-compiler:2.50")
 }
 kapt{
     correctErrorTypes = true

@@ -1,21 +1,26 @@
 package com.matrix.android105_android.presentation.product
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.matrix.android105_android.R
 import com.matrix.android105_android.databinding.FragmentProductBinding
 import com.matrix.android105_android.presentation.MyApp
+import com.matrix.android105_android.presentation.main.MainFragmentDirections
+import dagger.hilt.android.AndroidEntryPoint
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class ProductFragment : Fragment() {
     private lateinit var binding: FragmentProductBinding
     @Inject
@@ -37,7 +42,6 @@ class ProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireContext().applicationContext as MyApp).daggerAppComponent.inject(this)
         observeProducts()
         CoroutineScope(Dispatchers.IO).launch {
             productViewModel.getProducts()
@@ -46,7 +50,10 @@ class ProductFragment : Fragment() {
 
    private fun observeProducts(){
         productViewModel.products.observe(viewLifecycleOwner){
-             adapter = ProductAdapter(it)
+             adapter = ProductAdapter(it){
+                 val action =MainFragmentDirections.actionMainFragmentToProductDetailFragment(it.id.toString())
+                     findNavController().navigate(action)
+             }
              binding.rcyProducts.adapter =adapter
             binding.rcyProducts.layoutManager = GridLayoutManager(requireContext() ,2)
         }

@@ -11,6 +11,6 @@ interface ProductService {
     @GET("products")
     suspend fun getProducts():Response<List<ProductApiModel>>
 
-    @GET("auth/products/{id}")
+    @GET("products/{id}")
     suspend fun getProductById(@Path("id") id:Int):Response<ProductApiModel>
 }

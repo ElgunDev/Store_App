@@ -6,8 +6,10 @@ import com.matrix.android105_android.domain.repository.product.IProductRepositor
 import com.matrix.android105_android.domain.repository.productDetail.IProductDetailRepository
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
-
+@InstallIn(SingletonComponent::class)
 @Module
 abstract class RepositoryModule {
 

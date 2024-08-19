@@ -4,5 +4,5 @@ import com.matrix.android105_android.domain.models.ProductModelDto
 
 interface IProductDetailRepository {
 
-    suspend fun getProductById(productId:String):List<ProductModelDto>
+    suspend fun getProductById(productId:String):ProductModelDto
 }

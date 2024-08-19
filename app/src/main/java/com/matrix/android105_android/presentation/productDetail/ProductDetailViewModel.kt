@@ -9,7 +9,7 @@ import com.matrix.android105_android.domain.usecase.GetProductUseCase
 import javax.inject.Inject
 
 class ProductDetailViewModel @Inject constructor(
-    private val getProductByIdUseCase: GetProductByIdUseCase
+     val getProductByIdUseCase: GetProductByIdUseCase
             ):ViewModel() {
     private val _products = MutableLiveData<ProductModelDto>()
     val products: LiveData<ProductModelDto>
@@ -17,6 +17,6 @@ class ProductDetailViewModel @Inject constructor(
 
     suspend fun getProductDetail(productId:String){
         val products = getProductByIdUseCase.execute(productId)
-        _products.value = products.firstOrNull()
+        _products.postValue(products)
     }
 }
