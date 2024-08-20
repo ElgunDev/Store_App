@@ -17,7 +17,7 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         val retrofit= Retrofit.Builder()
-            .baseUrl("https://fakestoreapi.com/")
+            .baseUrl("https://dummyjson.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(provideClient())
             .build()

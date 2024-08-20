@@ -27,20 +27,21 @@ class ProductAdapter(
     }
 
     inner class ProductViewHolder(private val binding: ItemProductsBinding):RecyclerView.ViewHolder(binding.root){
-             fun bind(productModelDto: ProductModelDto){
-                  binding.txtProductName.text = productModelDto.title
-                 binding.txtId.text = productModelDto.id.toString()
-                 binding.txtPrice.text = productModelDto.price
-                 if (productModelDto.image.isNotEmpty()) {
-                     Glide.with(binding.root.context)
-                         .load(productModelDto.image)
-                         .into(binding.imageView)
-                 } else {
-                     binding.imageView.setImageResource(R.drawable.ic_launcher_background)
-                 }
-                 itemView.setOnClickListener{
-                     onItemClicked(productModelDto)
-                 }
+             fun bind(productModelDto: ProductModelDto) {
+                     binding.txtProductName.text = productModelDto.title
+                     binding.txtId.text = productModelDto.id.toString()
+                     binding.txtPrice.text = productModelDto.price.toString()
+                     if (productModelDto.images.isNotEmpty()) {
+                         Glide.with(binding.root.context)
+                             .load(productModelDto.images[0])
+                             .into(binding.imageView)
+                     } else {
+                         binding.imageView.setImageResource(R.drawable.ic_launcher_background)
+                     }
+                     itemView.setOnClickListener {
+                         onItemClicked(productModelDto)
+                     }
+
              }
     }
 }

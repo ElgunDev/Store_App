@@ -22,6 +22,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ProductDetailFragment : Fragment() {
      lateinit var binding: FragmentProductDetailBinding
+     lateinit var adapter:ProductViewPagerAdapter
     @Inject
      lateinit var viewModel: ProductDetailViewModel
      private val myArgument:ProductDetailFragmentArgs by navArgs()
@@ -53,18 +54,16 @@ class ProductDetailFragment : Fragment() {
     private fun observeProductDetail(){
         viewModel.products.observe(viewLifecycleOwner){
             it?.let {
-                binding.txtBrend.text =it.title
-                binding.txtId.text = it.id.toString()
-                binding.txtCategory.text = it.category
-                if (it.image.isNotEmpty()) {
-                    Glide.with(binding.root.context)
-                        .load(it.image)
-                        .into(binding.imageView3)
-                } else {
-                    binding.imageView3.setImageResource(R.drawable.ic_launcher_background)
-                }
+                    val imageList = it.images
+                    adapter = ProductViewPagerAdapter()
+                    binding.viewPager.adapter = adapter
+                    adapter.submitList(imageList)
+                    binding.txtBrend.text = it.title
+                    binding.txtId.text = it.id.toString()
+                    binding.txtCategory.text = it.category
             }
         }
+
     }
 
     private fun getBack(){

@@ -86,6 +86,7 @@ dependencies {
 //    implementation("com.google.firebase:firebase-database")
 //    implementation("com.google.firebase:firebase-storage")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.tbuonomo:dotsindicator:5.0")
 
     implementation ("com.google.dagger:dagger:2.52")
     kapt ("com.google.dagger:dagger-compiler:2.52")

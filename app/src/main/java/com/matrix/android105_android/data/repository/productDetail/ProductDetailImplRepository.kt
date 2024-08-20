@@ -14,9 +14,9 @@ class ProductDetailImplRepository @Inject constructor(
         var result:ProductModelDto?=null
         val response  = productDetailRemoteRepository.getProductById(productId)
         if (response.isSuccessful){
-            response.body()?.let {
-                 result= it.toDomain()
-            }
+           response.body()?.let{
+               result = it.toDomain()
+           }
         }
         return result!!
     }

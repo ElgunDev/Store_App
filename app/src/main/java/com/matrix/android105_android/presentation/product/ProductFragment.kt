@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,6 +14,7 @@ import com.matrix.android105_android.R
 import com.matrix.android105_android.databinding.FragmentProductBinding
 import com.matrix.android105_android.presentation.MyApp
 import com.matrix.android105_android.presentation.main.MainFragmentDirections
+import com.matrix.android105_android.utils.NetworkResource
 import dagger.hilt.android.AndroidEntryPoint
 
 import kotlinx.coroutines.CoroutineScope
@@ -50,12 +52,25 @@ class ProductFragment : Fragment() {
 
    private fun observeProducts(){
         productViewModel.products.observe(viewLifecycleOwner){
-             adapter = ProductAdapter(it){
-                 val action =MainFragmentDirections.actionMainFragmentToProductDetailFragment(it.id.toString())
-                     findNavController().navigate(action)
-             }
-             binding.rcyProducts.adapter =adapter
-            binding.rcyProducts.layoutManager = GridLayoutManager(requireContext() ,2)
+            when(it){
+                is NetworkResource.Success->{
+                    adapter = ProductAdapter(it.data){
+
+                        val action =MainFragmentDirections.actionMainFragmentToProductDetailFragment( it.id.toString())
+                        findNavController().navigate(action)
+                    }
+                    binding.rcyProducts.adapter =adapter
+                    binding.rcyProducts.layoutManager = GridLayoutManager(requireContext() ,2)
+                    binding.progressBar.visibility = View.INVISIBLE
+                }
+                is NetworkResource.Loading->{
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is NetworkResource.Error-> {
+                    Toast.makeText(requireContext(), "Xeta bas verdi", Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.INVISIBLE
+                }
+            }
         }
     }
 
