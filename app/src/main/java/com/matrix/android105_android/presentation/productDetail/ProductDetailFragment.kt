@@ -61,6 +61,7 @@ class ProductDetailFragment : Fragment() {
                     binding.txtBrend.text = it.title
                     binding.txtId.text = it.id.toString()
                     binding.txtCategory.text = it.category
+                    binding.dots.attachTo(binding.viewPager)
             }
         }
 

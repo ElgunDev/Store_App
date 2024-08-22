@@ -15,7 +15,7 @@ class ProductImplRepository @Inject constructor(
             val response = productRemoteRepository.getProducts()
             if (response.isSuccessful) {
                 response.body()?.let {
-                    val result = it.map {
+                    val result = it.products.map {
                         it.toDomain()
                     }
                     return NetworkResource.Success(result)

@@ -6,5 +6,5 @@ import retrofit2.Response
 
 interface IProductRemoteRepository {
 
-   suspend fun getProducts():Response<List<Product>>
+   suspend fun getProducts():Response<Products>
 }

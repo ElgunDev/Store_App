@@ -8,7 +8,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class ProductRemoteRepository @Inject constructor(private val productService: ProductService):IProductRemoteRepository {
-    override suspend fun getProducts(): Response<List<Product>> {
+    override suspend fun getProducts(): Response<Products> {
         return productService.getProducts()
     }
 }
