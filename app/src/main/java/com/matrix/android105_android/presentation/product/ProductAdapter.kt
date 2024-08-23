@@ -9,7 +9,7 @@ import com.matrix.android105_android.databinding.ItemProductsBinding
 import com.matrix.android105_android.domain.models.ProductModelDto
 
 class ProductAdapter(
-    private val productList: List<ProductModelDto>,
+    private var productList: List<ProductModelDto>,
     private val onItemClicked: (ProductModelDto) ->Unit
     ):RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
 
@@ -44,4 +44,9 @@ class ProductAdapter(
 
              }
     }
+    fun submitList(updatedList: List<ProductModelDto>) {
+        productList = updatedList
+        notifyDataSetChanged()
+    }
+
 }

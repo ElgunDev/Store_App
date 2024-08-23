@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.room.util.query
 
 import com.matrix.android105_android.R
 import com.matrix.android105_android.databinding.FragmentProductBinding
@@ -48,6 +50,7 @@ class ProductFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             productViewModel.getProducts()
         }
+        searchProduct()
     }
 
    private fun observeProducts(){
@@ -71,6 +74,38 @@ class ProductFragment : Fragment() {
                     binding.progressBar.visibility = View.INVISIBLE
                 }
             }
+        }
+    }
+
+    private fun searchProduct(){
+        binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+              return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    filterProduct(newText)
+                }
+                return true
+            }
+
+        })
+    }
+
+    private fun filterProduct(query:String){
+        val currentProducts = when (val productResource = productViewModel.products.value) {
+            is NetworkResource.Success -> productResource.data
+            else -> null
+        }
+
+        if (!query.isNullOrEmpty() && currentProducts != null) {
+            val filteredList = currentProducts.filter { product ->
+                product.title.contains(query, ignoreCase = true)
+            }
+            adapter.submitList(filteredList)
+        } else {
+         adapter.submitList(currentProducts!!)
         }
     }
 
